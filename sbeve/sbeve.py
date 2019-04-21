@@ -30,7 +30,7 @@ class Sbeve:
         self.full = sentence
         self.out = outtake
         self.reddit_part = self.get_reddit_part()
-
+        self.meme = self.get_meme()
 
     def get_reddit_part(self):
         counter = 0
@@ -65,7 +65,6 @@ class Sbeve:
                 ret += char
         if streak:
             ret += ']'
-            streak = False
         return ret
 
     def visualize(self, save='', show=True):
@@ -79,4 +78,4 @@ class Sbeve:
             plt.show()
 
     def __str__(self):
-        return self.get_meme()
+        return self.meme

@@ -10,7 +10,7 @@ sbeve = Sbeve(full, outtake)
 print(sbeve.full)
 print(sbeve.out)
 print(str(sbeve))
-sbeve.visualize('testo')
+sbeve.visualize()
 
 #class Sbeve_Tester(unittest.TestCase):
 #    pass
