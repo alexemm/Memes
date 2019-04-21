@@ -13,14 +13,19 @@ def make_sbeve(sentence, outtake, drop_spaces=True, lowercase=True):
 class Sbeve:
     
     def __init__(self, sentence, outtake, drop_spaces=False, lowercase=True):
-        out = outtake
+        self.out = outtake
+        sent = sentence
         if drop_spaces:
-            out = out.replace(' ', '')
+            self.out = self.out.replace(' ', '')
+            sent = sent.replace(' ', '')
         if lowercase:
-            out = out.lower()
+            self.out = self.out.lower()
+            sent = sent.lower()
 
         placeholder = '\\w*'
-        rgx_str = placeholder + placeholder.join(list(out))
+        if drop_spaces:
+            placeholder = '[A-Za-z ]*'
+        rgx_str = placeholder + placeholder.join(list(self.out)) + placeholder
         regex = re.compile(rgx_str)
         match = re.search(regex, sentence)
 
@@ -35,12 +40,13 @@ class Sbeve:
     def get_reddit_part(self):
         counter = 0
         ret = ''
+        print(self.out)
         for char in self.full:
-            if char == self.out[counter]:
-                counter += 1
-                continue
-            else:
-                ret += char
+            if counter < len(self.out):
+                if char == self.out[counter]:
+                    counter += 1
+                    continue
+            ret += char
         return ret
 
     # Get Meme Representation
@@ -49,26 +55,27 @@ class Sbeve:
         ret = ''
         streak = False
         for char in self.full:
-            if char == self.out[counter]:
-                if not streak:
-                    ret += '['
-                    ret += self.out[counter]
-                    streak = True
-                elif streak:
-                    ret += self.out[counter]
-                counter += 1
-                continue
-            else:
-                if streak:
-                    ret += ']'
-                    streak = False
-                ret += char
+            if counter < len(self.out):
+                if char == self.out[counter]:
+                    if not streak:
+                        ret += '['
+                        ret += self.out[counter]
+                        streak = True
+                    elif streak:
+                        ret += self.out[counter]
+                    counter += 1
+                    continue
+
+            if streak:
+                ret += ']'
+                streak = False
+            ret += char
         if streak:
             ret += ']'
         return ret
 
     def visualize(self, save='', show=True):
-        plt.text(0.5, 0.5, s=self.get_meme())
+        plt.text(0, 0, s=self.get_meme())
         plt.xlabel('')
         plt.ylabel('')
         plt.axis('off')
