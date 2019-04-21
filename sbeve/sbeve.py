@@ -74,7 +74,7 @@ class Sbeve:
         return ret
 
     def visualize(self, save='', show=True):
-        plt.text(0, 0, s=self.get_meme())
+        plt.text(0.5, 0.5, s=self.get_meme(), horizontalalignment='center', verticalalignment='center')
         plt.xlabel('')
         plt.ylabel('')
         plt.axis('off')
