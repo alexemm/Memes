@@ -27,13 +27,12 @@ class Sbeve:
             placeholder = '[A-Za-z ]*'
         rgx_str = placeholder + placeholder.join(list(self.out)) + placeholder
         regex = re.compile(rgx_str)
-        match = re.search(regex, sentence)
+        match = re.search(regex, sent)
 
         if match is None:
             raise Exception
 
         self.full = sentence
-        self.out = outtake
         self.reddit_part = self.get_reddit_part()
         self.meme = self.get_meme()
 
@@ -83,6 +82,7 @@ class Sbeve:
             plt.savefig(save)
         if show:
             plt.show()
+        plt.close()
 
     def __str__(self):
         return self.meme
