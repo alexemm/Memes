@@ -24,10 +24,6 @@ class Sbeve:
         regex = re.compile(rgx_str)
         match = re.search(regex, sentence)
 
-        print(rgx_str)
-        print(sentence)
-        print(outtake)
-
         if match is None:
             raise Exception
 
