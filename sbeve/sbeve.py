@@ -11,7 +11,7 @@ def make_sbeve(sentence, outtake, drop_spaces=True, lowercase=True):
 
 
 class Sbeve:
-    
+
     def __init__(self, sentence, outtake, drop_spaces=False, lowercase=True):
         self.out = outtake
         sent = sentence
@@ -32,7 +32,7 @@ class Sbeve:
         if match is None:
             raise Exception
 
-        self.full = sent
+        self.full = sentence
         self.reddit_part = self.get_reddit_part()
         self.meme = self.get_meme()
 
@@ -55,7 +55,7 @@ class Sbeve:
         streak = False
         for char in self.full:
             if counter < len(self.out):
-                if char == self.out[counter]:
+                if char.lower() == self.out[counter].lower():
                     if not streak:
                         ret += '['
                         ret += self.out[counter]
