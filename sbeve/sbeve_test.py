@@ -15,14 +15,17 @@ tests = [{'full':  'shes wanting love and understanding again',
          {
              'full': 'be loving but a zen motherfucker',
              'outtake': 'blazo'
-         }]
+         },
+         {'full': 'Real eyes realize real lies',
+          'outtake': 'reeeeeee',
+          'reddit_part': ''}]
 
 class Tests:
     def __init__(self, full, outtake, reddit_part):
         #self.full =
         pass
 
-test = tests[2]
+test = tests[3]
 
 sbeve = Sbeve(test['full'], test['outtake'], drop_spaces=True)
 print(sbeve.full)

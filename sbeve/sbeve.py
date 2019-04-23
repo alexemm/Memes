@@ -32,7 +32,7 @@ class Sbeve:
         if match is None:
             raise Exception
 
-        self.full = sentence
+        self.full = sent
         self.reddit_part = self.get_reddit_part()
         self.meme = self.get_meme()
 
